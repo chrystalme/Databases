@@ -275,7 +275,48 @@ having sum(population) > 100000000
 SELECT matchid, player 
 FROM goal 
   WHERE teamid = 'GER'
-  
+
+-- No 2
+SELECT id,stadium,team1,team2
+  FROM game
+where id = 1012
+
+-- No 3
+SELECT player, teamid, stadium, mdate
+  FROM game JOIN goal ON (id=matchid)
+where teamid = 'GER'
+
+-- No 4
+Select team1, team2, player
+from game join goal on (id=matchid)
+where player LIKE 'Mario%'
+
+-- No 5
+SELECT player, teamid, coach, gtime
+  FROM goal JOIN eteam on teamid=id 
+ WHERE gtime<=10
+
+-- No 6
+select mdate, teamname
+from game JOIN eteam ON (team1=eteam.id)
+where coach = 'Fernando Santos'
+
+-- No 7
+select player
+from goal join game on game.id = goal.matchid
+where stadium = 'National Stadium, Warsaw'
+
+-- No 8
+SELECT dISTINCT(player)
+  FROM game g JOIN goal go ON go.matchid = g.id 
+    WHERE (team1 = teamid and team2='GER') or (team2 = teamid and team1='GER')
+
+-- No 9
+
+-- No 
+-- No 
+-- No 
+-- No 
 -- No 
 -- No 
 -- No 
