@@ -111,11 +111,51 @@ from nobel
 where subject = 'Literature'
 and yr between 1980 and 1989
 
--- no 6
+-- No 6
 SELECT * FROM nobel
  WHERE winner IN ('Theodore Roosevelt',
                   'Woodrow Wilson',
                   'Jimmy Carter', 'Barack Obama')
 
+-- No 7
+select winner 
+from nobel
+where winner like 'John%'
 
+-- No 8
+select yr, subject, winner
+from nobel
+where yr in (1980) and subject in ('Physics')
+or yr in (1984) and subject in ('Chemistry')
 
+-- No 9
+select yr, subject, winner
+from nobel
+where subject not in ('Chemistry', 'Medicine') and yr = 1980
+
+-- No 10
+select yr, subject, winner
+from nobel
+where subject = 'Medicine' and yr < 1910
+or subject = 'Literature' and yr >= 2004
+
+-- No 11
+select yr, subject, winner
+from nobel
+where subject not in ('Chemistry', 'Medicine') and yr = 1980
+
+-- No 12
+Select * 
+from nobel 
+where winner = 'EUGENE O''NEILL'
+
+-- No 13
+select winner, yr, subject
+from nobel
+where winner like 'Sir%'
+
+-- No 14
+SELECT winner, subject
+  FROM nobel
+ WHERE yr=1984
+ ORDER BY subject IN ('Physics','Chemistry'), subject,winner
