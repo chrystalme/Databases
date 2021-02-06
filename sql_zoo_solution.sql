@@ -181,3 +181,105 @@ continent = (select continent from world where name = 'Australia')
 order by name
 
 -- No 4
+select name 
+from world 
+where population > (select population from world where name = 'Canada')
+and population < (select population from world where name = 'Poland')
+
+-- No 5
+select name, concat(round((population/(select population from world where name =  'Germany') * 100), 0), '%') percentage 
+from world
+where continent = 'Europe' 
+
+-- No 6
+select name 
+from world
+where gdp > (select max(gdp)
+from world 
+where continent = 'Europe')
+
+-- No 7
+SELECT continent, name, area 
+FROM world x
+  WHERE area =
+    (SELECT Max(area) FROM world y
+        WHERE y.continent=x.continent)
+
+-- No 8
+select continent, name 
+from world x
+where name <= ALL (select name 
+                          from world y
+                         WHERE y.continent=x.continent)
+
+-- No 9
+select name , continent, population
+from world
+where continent in (select continent 
+                    from world x
+                     where 25000000 > ALL (select population 
+                              from world y
+                                 where x.continent = y.continent))
+
+-- No 10
+select name, continent
+from world x
+where population > ALL (select population*3
+                            from world y
+                              where x.continent = y.continent
+                               and x.name != y.name)
+
+-- SUM AND COUNT
+-- No 1
+SELECT SUM(population)
+FROM world
+
+-- No 2
+select distinct(continent)
+from world
+
+-- No 3
+select sum(gdp)
+from world
+where continent = 'Africa'
+
+-- No 4
+select count(name)
+from world
+where area >= 1000000
+
+-- No 5
+select sum(population)
+from world
+where name in ('Estonia', 'Latvia', 'Lithuania')
+
+-- No 6
+select continent, count(name) no_of_countries
+from world
+group by continent
+
+-- No 7
+select continent , count(name) no_of_countries
+from world
+where population >= 10000000
+group by continent
+
+-- No 8
+select continent
+from world
+group by continent
+having sum(population) > 100000000
+
+-- JOIN
+-- No 1
+SELECT matchid, player 
+FROM goal 
+  WHERE teamid = 'GER'
+  
+-- No 
+-- No 
+-- No 
+-- No 
+-- No 
+
+
