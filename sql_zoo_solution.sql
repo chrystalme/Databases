@@ -159,3 +159,25 @@ SELECT winner, subject
   FROM nobel
  WHERE yr=1984
  ORDER BY subject IN ('Physics','Chemistry'), subject,winner
+
+--  Select in select
+-- No 1
+SELECT name FROM world
+  WHERE population >
+     (SELECT population FROM world
+      WHERE name='Russia')
+
+-- No 2
+Select name
+from world
+where continent = 'Europe'
+and gdp/population > (select gdp/population from world where name = 'United Kingdom')
+
+-- No 3
+Select name, continent
+from world
+where continent = (select continent from world where name = 'Argentina') or
+continent = (select continent from world where name = 'Australia')
+order by name
+
+-- No 4
