@@ -470,12 +470,45 @@ SELECT teacher.name, dept.name
            ON (teacher.dept=dept.id)
 
 -- No 5
+SELECT name, COALESCE(mobile, '07986 444 2266') mobile
+ FROM teacher 
 
--- No 
--- No 
--- No 
--- No 
--- No 
+-- No 6
+SELECT teacher.name, Coalesce(dept.name, 'None')
+ FROM teacher LEFT JOIN dept
+           ON (teacher.dept=dept.id)
+
+-- No 7
+select count(name), count(mobile)
+from teacher
+
+-- No 8
+SELECT  dept.name, count(teacher.name) staff
+ FROM teacher RIGHT JOIN dept
+           ON (teacher.dept=dept.id)
+GROUP BY dept.name
+
+-- No 9
+SELECT teacher.name,
+         CASE WHEN teacher.dept = 1
+                THEN 'Sci'
+                WHEN teacher.dept = 2  
+                THEN 'Sci'
+            ELSE 'Art'
+       END  
+FROM teacher Left JOIN dept ON dept.id = teacher.dept
+
+-- No 10
+SELECT teacher.name,
+         CASE WHEN teacher.dept = 1
+                THEN 'Sci'
+                WHEN teacher.dept = 2  
+                THEN 'Sci'
+WHEN teacher.dept = 3
+THEN 'Art'
+            ELSE 'None'
+       END  
+FROM teacher left JOIN dept ON dept.id = teacher.dept
 -- No 
 -- No 
 -- No 
