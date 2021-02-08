@@ -514,8 +514,41 @@ FROM teacher left JOIN dept ON dept.id = teacher.dept
 -- No 1
 select count(id)
 from stops
--- No 
--- No 
--- No 
+
+-- No 2
+SELECT id 
+from stops
+where name = 'Craiglockhart'
+
+-- No 3
+select id, name 
+from route JOIN stops ON id = stop
+where num = '4' and company = 'LRT'
+
+-- No 4
+SELECT company, num, COUNT(*)
+FROM route WHERE stop=149 OR stop=53
+GROUP BY company, num
+HAVING count(*) = 2
+
+-- No 5
+SELECT a.company, a.num, a.stop, b.stop
+FROM route a JOIN route b ON
+(a.company=b.company AND a.num=b.num)
+WHERE a.stop=53 and b.stop=149
+
+-- No 6
+SELECT a.company, a.num, stopa.name, stopb.name
+FROM route a JOIN route b ON
+  (a.company=b.company AND a.num=b.num)
+  JOIN stops stopa ON (a.stop=stopa.id)
+  JOIN stops stopb ON (b.stop=stopb.id)
+WHERE stopa.name='Craiglockhart' and stopb.name = 'London Road'
+
+-- No 7
+
+-- No 8 
+-- No 9
+-- No 10
 
 
