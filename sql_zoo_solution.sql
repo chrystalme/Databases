@@ -509,8 +509,11 @@ THEN 'Art'
             ELSE 'None'
        END  
 FROM teacher left JOIN dept ON dept.id = teacher.dept
--- No 
--- No 
+
+-- SELF JOIN
+-- No 1
+select count(id)
+from stops
 -- No 
 -- No 
 -- No 
